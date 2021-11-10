@@ -3,45 +3,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>Login-Registre</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <form action="index.php" method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="mail" name="mail" placeholder="Mail">
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" name="repeatpassword" placeholder="Repeat Password">
-        <input type="submit" name="submit" value="Register">
-    </form>
-    <?php
-    $mysql=new mysqli('localhost','root','','vols');
-    if($mysql->connect_errno){
-        die($mysql->connect_error);
-    }
-    $mysql->set_charset('utf8');
-    if(isset($_POST['submit'])){
-        $username=$_POST['username'];
-        $password=$_POST['password'];
-        $repeatpassword=$_POST['repeatpassword'];
-        $mail=$_POST['mail'];
-        if($password==$repeatpassword){
-            $password=md5($password);
-            $sql="INSERT INTO usuari (nom,contrasenya,correu) VALUES ('$username','$password','$mail')";
-            $result=$mysql->query($sql);
-            if($result){
-                echo '<p>You have been registered</p>';
-            }else{
-                echo '<p>Error</p>';
-            }
-        }else{
-            echo '<p>Passwords do not match</p>';
-        }
-    }
 
+<div class="p-5 bg-primary text-white text-center">
+  <h1>Vols</h1>
+  <p>Pràctica de vols amb mysql</p> 
+</div>
 
-?>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="login.php">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="register.php">Register</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>About Me</h2>
+      <h5>Photo of me:</h5>
+      <div class="fakeimg">Fake Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+      <h3 class="mt-4">Some Links</h3>
+      <p>Lorem ipsum dolor sit ame.</p>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <hr class="d-sm-none">
+    </div>
+    <div class="col-sm-8">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2020</h5>
+      <div class="fakeimg">Fake Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+
+      <h2 class="mt-5">TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2020</h5>
+      <div class="fakeimg">Fake Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5 p-4 bg-dark text-white text-center">
+  <p>Footer</p>
+</div>
+
 </body>
 </html>

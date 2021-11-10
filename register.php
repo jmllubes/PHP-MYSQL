@@ -36,7 +36,7 @@
 <h1>Register</h1>
 </div>
 <div class="login-form bg-light mt-4 p-4 text-center">
-    <form class="form-control" action="index.php" method="post">
+    <form class="form-control" action="register.php" method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="mail" name="mail" placeholder="Mail">
         <input type="password" name="password" placeholder="Password">
@@ -61,6 +61,7 @@
             $result=$mysql->query($sql);
             if($result){
                 echo '<p>You have been registered</p>';
+                header('Location: login.php');
             }else{
                 echo '<p>Error</p>';
             }

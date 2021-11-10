@@ -36,7 +36,7 @@
 <h1 > Login </h1>
 </div>
 <div class="login-form bg-light mt-4 p-4 text-center">
-<form class="form-control" action="index.php" method="post">
+<form class="form-control" action="login.php" method="post">
     <input type="text" name="user" placeholder="Username">
     <input type="password" name="password" placeholder="Password">
     <input type="submit" name="Login" value="Login">
@@ -47,6 +47,11 @@
 
 <?php
 if(isset($_POST['Login'])){
+    $mysql=new mysqli('localhost','root','','vols');
+    if($mysql->connect_errno){
+        die($mysql->connect_error);
+    }
+    $mysql->set_charset('utf8');
     $user=$_POST['user'];
     $password1=$_POST['password'];
     $password1=md5($password1);
@@ -54,6 +59,7 @@ if(isset($_POST['Login'])){
     $result1=$mysql->query($sql1);
     if($result1->num_rows>0){
         echo '<p>You have been logged in</p>';
+        header('Location: index.php');
 
     }else{
         echo '<p>Error</p>';

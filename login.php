@@ -46,6 +46,7 @@
 
 
 <?php
+session_start();
 if(isset($_POST['Login'])){
     $mysql=new mysqli('localhost','root','','vols');
     if($mysql->connect_errno){
@@ -58,6 +59,8 @@ if(isset($_POST['Login'])){
     $sql1="SELECT * FROM usuari WHERE nom='$user' AND contrasenya='$password1'";
     $result1=$mysql->query($sql1);
     if($result1->num_rows>0){
+        $_SESSION['user']=$user;
+        $_SESSION['rol']=$result1->fetch_assoc()['rol'];
         echo '<p>You have been logged in</p>';
         header('Location: index.php');
 
